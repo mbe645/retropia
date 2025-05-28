@@ -16,22 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('markdownx/', include('markdownx.urls')),
+
+    # Uygulama yolları
     path('games/', include('games.urls')),
     path('cards/', include('cards.urls')),
     path('blog/', include('blog.urls')),
     path('comments/', include('comments.urls')),
     path('favorites/', include('favorites.urls')),
     path('pages/', include('pages.urls')),
-    path('admin/', admin.site.urls),
-    path('markdownx/', include('markdownx.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('pages.urls')),
 ]
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
