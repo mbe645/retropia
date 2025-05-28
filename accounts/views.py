@@ -13,7 +13,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Automatically login after registration (optional)
-            return redirect('profile_view', username=user.username)
+            return redirect('accounts:profile_view', username=user.username)
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -25,7 +25,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('profile_view', username=user.username)
+            return redirect('accounts:profile_view', username=user.username)
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -41,6 +41,7 @@ def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     profile = user.profile
     return render(request, 'accounts/profile.html', {'profile': profile})
+    
 
 # View for editing current user's profile
 @login_required
