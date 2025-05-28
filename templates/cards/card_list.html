@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2>Your Retro Card Collection</h2>
+    <p class="lead">Explore and manage your nostalgic character and game cards here.</p>
+
+    {% if cards %}
+        <div class="row mt-4">
+            {% for card in cards %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        {% if card.image %}
+                            <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ card.name }}</h5>
+                            <p class="card-text">{{ card.description|truncatewords:15 }}</p>
+                            <a href="{% url 'cards:card-detail' card.id %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No cards available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

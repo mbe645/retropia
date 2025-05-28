@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title">{{ game.name }}</h2>
+                    <p class="card-text">{{ game.description }}</p>
+                    <p><strong>Platform:</strong> {{ game.platform }}</p>
+                    <p><strong>Release Year:</strong> {{ game.release_year }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

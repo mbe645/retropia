@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ blogpost.title }}</h1>
+  <p><strong>By:</strong> {{ blogpost.author.username }} | <strong>Date:</strong> {{ blogpost.created_at|date:'SHORT_DATETIME_FORMAT' }}</p>
+  <div>{{ blogpost.content|linebreaksbr }}</div>
+
+  <hr>
+  <h3>Comments</h3>
+  <div>
+    {% for comment in comments %}
+      <div style="margin-bottom: 1em;">
+        <strong>{{ comment.user.username }}</strong> <small>{{ comment.created_at|date:'SHORT_DATETIME_FORMAT' }}</small><br>
+        {{ comment.content|linebreaksbr }}
+      </div>
+    {% empty %}
+      <p>No comments yet.</p>
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <h4>Add a comment</h4>
+    <form method="post" action="{% url 'add-comment' %}">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <input type="hidden" name="target_type" value="blog">
+      <input type="hidden" name="target_id" value="{{ blogpost.id }}">
+      <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+  {% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
+  {% endif %}
+{% endblock %} 

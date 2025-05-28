@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>All Comments</h2>
+    <div class="list-group mt-4">
+        {% for comment in comments %}
+            <div class="list-group-item">
+                <strong>{{ comment.user.username }}</strong> <small>{{ comment.created_at|date:'SHORT_DATETIME_FORMAT' }}</small><br>
+                {{ comment.content|linebreaksbr }}
+                {% if comment.blog_post %}<div><small>Blog: {{ comment.blog_post }}</small></div>{% endif %}
+                {% if comment.card %}<div><small>Card: {{ comment.card }}</small></div>{% endif %}
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 
