@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from .models import Profile
 from .forms import ProfileForm
 
@@ -55,12 +56,12 @@ def profile_edit(request):
         form = ProfileForm(instance=profile)
     return render(request, 'accounts/profile_edit.html', {'form': form})
 
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-
 def create_superuser(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
-        return HttpResponse("Superuser created")
-    else:
-        return HttpResponse("Superuser already exists")
+    user, created = User.objects.get_or_create(username='admin', defaults={
+        'email': 'admin@example.com'
+    })
+    user.set_password('admin123')  # Parolayı her durumda sıfırlar
+    user.is_staff = True
+    user.is_superuser = True
+    user.save()
+    return HttpResponse("Superuser created or updated successfully")
