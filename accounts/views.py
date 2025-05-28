@@ -12,7 +12,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Automatically login after registration (optional)
+            login(request, user)  # Automatically login after registration
             return redirect('accounts:profile_view', username=user.username)
     else:
         form = UserCreationForm()
@@ -33,7 +33,7 @@ def login_view(request):
 # User logout view
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('accounts:login')
 
 # View for displaying a user's profile
 @login_required
@@ -41,7 +41,6 @@ def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     profile = user.profile
     return render(request, 'accounts/profile.html', {'profile': profile})
-    
 
 # View for editing current user's profile
 @login_required
@@ -51,7 +50,7 @@ def profile_edit(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile_view', username=request.user.username)
+            return redirect('accounts:profile_view', username=request.user.username)  # ✅ Buraya düzeltme yapıldı
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'accounts/profile_edit.html', {'form': form})
