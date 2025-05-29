@@ -1,60 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                {% if card.image %}
-                    <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.name }}">
-                {% endif %}
-                <div class="card-body">
-                    <h2 class="card-title">{{ card.name }}</h2>
-                    <p class="card-text">{{ card.description }}</p>
-                    <p><strong>Rarity:</strong> {{ card.get_rarity_display }}</p>
-                    <p><strong>Game:</strong> {{ card.game }}</p>
-                    
-                    {% if user.is_authenticated %}
-                        <form method="post" action="{% url 'toggle-favorite' card.id %}" class="mb-3">
-                            {% csrf_token %}
-                            {% if is_favorited %}
-                                <button type="submit" class="btn btn-danger">Remove from Favorites</button>
-                            {% else %}
-                                <button type="submit" class="btn btn-primary">Add to Favorites</button>
-                            {% endif %}
-                        </form>
-                    {% else %}
-                        <p><a href="{% url 'login' %}">Log in</a> to add this card to your favorites.</p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <hr>
-            <h4 class="mt-4">Comments</h4>
-            <div class="mb-4">
-                {% for comment in comments %}
-                    <div class="border rounded p-2 mb-2">
-                        <strong>{{ comment.user.username }}</strong>
-                        <small class="text-muted">{{ comment.created_at|date:'SHORT_DATETIME_FORMAT' }}</small>
-                        <div>{{ comment.content|linebreaksbr }}</div>
-                    </div>
-                {% empty %}
-                    <p>No comments yet.</p>
-                {% endfor %}
-            </div>
-
-            {% if user.is_authenticated %}
-                <h5>Add a comment</h5>
-                <form method="post" action="{% url 'add-comment' %}">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <input type="hidden" name="target_type" value="card">
-                    <input type="hidden" name="target_id" value="{{ card.id }}">
-                    <button type="submit" class="btn btn-secondary">Submit</button>
-                </form>
-            {% else %}
-                <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
+  <div class="container mt-4">
+    <h2>{{ card.name }}</h2>
+    <p>{{ card.description }}</p>
+    <p><strong>Rarity:</strong> {{ card.rarity }}</p>
+  </div>
 {% endblock %} 

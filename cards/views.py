@@ -15,8 +15,8 @@ def index(request):
     return render(request, 'cards/card_list.html', {'cards': cards})
 
 @login_required
-def card_detail(request, card_id):
-    card = get_object_or_404(Card, id=card_id)
+def card_detail(request, pk):
+    card = get_object_or_404(Card, pk=pk)
     is_favorited = False
     if request.user.is_authenticated:
         is_favorited = Favorite.objects.filter(user=request.user, card=card).exists()
