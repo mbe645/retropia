@@ -39,7 +39,7 @@ def logout_view(request):
 @login_required
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
-    profile = user.profile
+    profile, created = Profile.objects.get_or_create(user=user)
     return render(request, 'accounts/profile.html', {'profile': profile})
 
 # View for editing current user's profile
