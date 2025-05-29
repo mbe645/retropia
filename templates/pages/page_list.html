@@ -4,7 +4,7 @@
     <h2>Static Pages</h2>
     <div class="list-group mt-4">
         {% for page in pages %}
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="{{ page.get_absolute_url }}" class="list-group-item list-group-item-action">
                 <strong>{{ page.title }}</strong>
             </a>
         {% empty %}
