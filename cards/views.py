@@ -6,6 +6,8 @@ from favorites.models import Favorite
 from django.contrib.auth.models import User
 from comments.models import Comment
 from comments.forms import CommentForm
+from .forms import CardForm
+from django.shortcuts import redirect
 
 @login_required
 def index(request):
@@ -26,3 +28,14 @@ def card_detail(request, card_id):
         'comments': comments,
         'comment_form': comment_form
     })
+
+@login_required
+def add_card(request):
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cards:cards-home')
+    else:
+        form = CardForm()
+    return render(request, 'cards/add_card.html', {'form': form})
