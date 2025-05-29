@@ -21,7 +21,16 @@ def card_detail(request, pk):
     if request.user.is_authenticated:
         is_favorited = Favorite.objects.filter(user=request.user, card=card).exists()
     comments = card.comments.all().order_by('-created_at')
-    comment_form = CommentForm()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.card = card
+            comment.save()
+            return redirect('cards:card-detail', pk=pk)
+    else:
+        comment_form = CommentForm()
     return render(request, 'cards/card_detail.html', {
         'card': card,
         'is_favorited': is_favorited,
