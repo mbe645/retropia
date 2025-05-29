@@ -13,7 +13,7 @@ def blog_list(request):
 
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
-    comments = post.blog_comments.all().order_by('-created_at')
+    comments = post.comments.all().order_by('-created_at')  # DÜZELTİLDİ: blog_comments → comments
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
