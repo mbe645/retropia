@@ -85,6 +85,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'games:games-home' %}">Games</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'games:add-game' %}" class="btn btn-success ms-2">Add New Game</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                 <a class="nav-link" href="{% url 'blog:blog-home' %}">Blog</a>
                 </li>
