@@ -13,3 +13,9 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         return reverse('blogpost-detail', args=[str(self.id)])
+
+class BlogComment(models.Model):
+    blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
