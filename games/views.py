@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Game
-from .forms import GameForm
+from .forms import GameForm, GameCommentForm
 from django.shortcuts import redirect
 
 def index(request):
@@ -14,9 +14,24 @@ def game_list(request):
     return render(request, 'games/game_list.html', {'games': games})
 
 @login_required
-def game_detail(request, game_id):
-    game = get_object_or_404(Game, id=game_id)
-    return render(request, 'games/game_detail.html', {'game': game})
+def game_detail(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    comments = game.comments.all()
+    if request.method == 'POST':
+        form = GameCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.game = game
+            comment.save()
+            return redirect('games:game-detail', pk=pk)
+    else:
+        form = GameCommentForm()
+    return render(request, 'games/game_detail.html', {
+        'game': game,
+        'form': form,
+        'comments': comments
+    })
 
 @login_required
 def add_game(request):
