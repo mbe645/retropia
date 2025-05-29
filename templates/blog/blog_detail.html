@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+
 {% block content %}
   <div class="container mt-4">
     <h2>{{ post.title }}</h2>
-    <p><strong>By:</strong> {{ post.author.username }} | <strong>Date:</strong> {{ post.created_at }}</p>
+    <p>
+      <strong>By:</strong> {{ post.author.username }} |
+      <strong>Date:</strong> {{ post.created_at }}
+    </p>
     <p>{{ post.content }}</p>
 
     <h3>Comments</h3>
     {% for comment in comments %}
-      <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+      <p>
+        <strong>
+          {% if comment.user %}
+            {{ comment.user.username }}
+          {% else %}
+            Anonymous
+          {% endif %}
+        </strong>: {{ comment.content }}
+      </p>
     {% empty %}
       <p>No comments yet.</p>
     {% endfor %}
@@ -22,4 +34,4 @@
       <p><a href="{% url 'accounts:login' %}">Log in</a> to comment.</p>
     {% endif %}
   </div>
-{% endblock %} 
+{% endblock %}
