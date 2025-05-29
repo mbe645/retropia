@@ -14,7 +14,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='comments'
+        related_name='general_comments'
     )
     card = models.ForeignKey(
         Card,

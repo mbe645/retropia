@@ -5,7 +5,7 @@ from django.utils.text import slugify
 class Page(models.Model):
     title = models.CharField(max_length=100, unique=True)
     content = models.TextField()
-    slug = models.SlugField(max_length=120, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.title
