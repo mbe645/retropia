@@ -37,6 +37,7 @@ def edit_blogpost(request, pk):
         form = BlogPostForm(instance=blogpost)
     return render(request, 'blog/blogpost_form.html', {'form': form, 'edit_mode': True})
 
+@login_required
 def blogpost_detail(request, pk):
     blogpost = get_object_or_404(BlogPost, pk=pk)
     comments = blogpost.comments.all().order_by('-created_at')
@@ -52,6 +53,7 @@ def blog_list(request):
     posts = BlogPost.objects.all().order_by('-created_at')
     return render(request, 'blog/blog_list.html', {'posts': posts})
 
+@login_required
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
     comments = post.comments.all()
