@@ -12,7 +12,7 @@ def home(request):
 
 @login_required
 def page_list(request):
-    pages = Page.objects.all()
+    pages = Page.objects.all().order_by('order')
     return render(request, 'pages/page_list.html', {'pages': pages})
 
 def page_detail(request, slug):

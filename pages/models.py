@@ -6,6 +6,7 @@ class Page(models.Model):
     title = models.CharField(max_length=100, unique=True)
     content = models.TextField()
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
