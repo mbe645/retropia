@@ -1,19 +1,21 @@
 body {
-    background-color: #f7e9b0 !important;
-    background-image:
-        repeating-linear-gradient(135deg, #f7e9b0 0px, #f7e9b0 4px, #f3d88a 4px, #f3d88a 8px),
-        repeating-linear-gradient(45deg, #f7e9b0 0px, #f7e9b0 4px, #f3d88a 4px, #f3d88a 8px);
-    background-size: 16px 16px;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #000;
+    background-color: #f4f1de !important;
+    background-image: radial-gradient(#e7d8a3 1px, transparent 1px);
+    background-size: 20px 20px;
     background-attachment: fixed;
-    color: #2b2b2b;
     margin: 0;
     padding: 0;
-    text-shadow: 2px 2px #000;
 }
 
 h1, h2, h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.7em;
+    font-family: 'VT323', monospace !important;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -53,7 +55,7 @@ h3 {
     color: #000 !important;
     box-shadow: 3px 3px 0px #000;
     padding: 12px 16px;
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'VT323', monospace !important;
     margin: 10px 0;
     text-transform: uppercase;
 }
