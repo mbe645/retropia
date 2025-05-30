@@ -71,7 +71,7 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 
 .list-group-item, .card, .form-control, textarea, input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="search"], select {
     background-color: #00bfff !important;
-    color: #fff !important;
+    color: #000 !important;
     border: 2px solid #000 !important;
     border-radius: 8px !important;
     box-shadow: 2px 2px 0 #000;
@@ -79,10 +79,10 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 }
 
 .list-group-item a, .card-title, .card-text, .form-label, label {
-    color: #fff !important;
+    color: #000 !important;
 }
 
 ::placeholder {
-    color: #e0e0e0 !important;
+    color: #222 !important;
     opacity: 1;
 }
