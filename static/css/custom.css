@@ -1,12 +1,22 @@
+.light-theme {
+    --bg-color: #f4f1de;
+    --text-color: #000;
+    --grid-dot: #e7d8a3;
+}
+.dark-theme {
+    --bg-color: #232323;
+    --text-color: #fff;
+    --grid-dot: #444;
+}
+
 body {
+    background-color: var(--bg-color) !important;
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-color) !important;
     font-family: 'VT323', monospace !important;
     font-size: 18px;
     line-height: 1.6;
-    color: #000;
-    background-color: #f4f1de !important;
-    background-image: radial-gradient(#e7d8a3 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
@@ -87,4 +97,8 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 ::placeholder {
     color: #222 !important;
     opacity: 1;
+}
+
+.card, .list-group-item, .form-control, textarea, input, select {
+    color: var(--text-color) !important;
 }
