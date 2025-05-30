@@ -13,7 +13,7 @@ body {
 
 h1, h2, h3 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 2.2em;
+    font-size: 2em;
 }
 
 .navbar {
@@ -56,7 +56,7 @@ h1, h2, h3 {
 }
 
 body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, span, strong, em, small, button, h1, h2, h3, h4, h5, h6 {
-    font-family: 'VT323', monospace !important;
-    font-size: 22px;
-    letter-spacing: 1px;
+    font-family: 'Share Tech Mono', monospace !important;
+    font-size: 18px;
+    letter-spacing: 0.5px;
 }
