@@ -115,3 +115,25 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 .nav-cards { color: var(--nav-cards) !important; }
 .nav-games { color: var(--nav-games) !important; }
 .nav-blog  { color: var(--nav-blog) !important; }
+
+.logo-multi .r  { color: #00bfff; }  /* Mavi */
+.logo-multi .e  { color: #facc15; }  /* Sarı */
+.logo-multi .t  { color: #22c55e; }  /* Yeşil */
+.logo-multi .r2 { color: #f43f5e; }  /* Kırmızı */
+.logo-multi .o  { color: #a78bfa; }  /* Mor */
+.logo-multi .p  { color: #fb923c; }  /* Turuncu */
+.logo-multi .i  { color: #fff;    }  /* Beyaz */
+.logo-multi .a  { color: #38bdf8; }  /* Açık mavi */
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.navbar .btn {
+    vertical-align: middle;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
