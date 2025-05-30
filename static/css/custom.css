@@ -2,11 +2,19 @@
     --bg-color: #f4f1de;
     --text-color: #000;
     --grid-dot: #e7d8a3;
+    --nav-home: #00bfff;
+    --nav-cards: #facc15;
+    --nav-games: #22c55e;
+    --nav-blog: #f43f5e;
 }
 .dark-theme {
     --bg-color: #232323;
     --text-color: #fff;
     --grid-dot: #444;
+    --nav-home: #38bdf8;
+    --nav-cards: #fde047;
+    --nav-games: #4ade80;
+    --nav-blog: #fb7185;
 }
 
 body {
@@ -102,3 +110,8 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 .card, .list-group-item, .form-control, textarea, input, select {
     color: var(--text-color) !important;
 }
+
+.nav-home  { color: var(--nav-home) !important; }
+.nav-cards { color: var(--nav-cards) !important; }
+.nav-games { color: var(--nav-games) !important; }
+.nav-blog  { color: var(--nav-blog) !important; }
