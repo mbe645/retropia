@@ -122,7 +122,7 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 .logo-multi .r2 { color: #f43f5e; }  /* Kırmızı */
 .logo-multi .o  { color: #a78bfa; }  /* Mor */
 .logo-multi .p  { color: #fb923c; }  /* Turuncu */
-.logo-multi .i  { color: #fff;    }  /* Beyaz */
+.logo-multi .i  { color: #f472b6; }  /* Pembe */
 .logo-multi .a  { color: #38bdf8; }  /* Açık mavi */
 
 .navbar-nav {
@@ -137,3 +137,6 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
+
+.nav-login    { color: #fb923c !important; } /* Turuncu */
+.nav-register { color: #f43f5e !important; } /* Kırmızı */
