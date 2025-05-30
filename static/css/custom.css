@@ -1,18 +1,9 @@
 body {
-    background-image: repeating-linear-gradient(
-        45deg,
-        #c44c3f,  /* Red */
-        #c44c3f 20px,
-        #f0c849 20px,
-        #f0c849 40px,
-        #56a3a6 40px,
-        #56a3a6 60px,
-        #497d2b 60px,
-        #497d2b 80px,
-        #d4a373 80px,
-        #d4a373 100px
-    );
-    background-size: auto;
+    background-color: #f7e9b0 !important;
+    background-image:
+        repeating-linear-gradient(135deg, #f7e9b0 0px, #f7e9b0 4px, #f3d88a 4px, #f3d88a 8px),
+        repeating-linear-gradient(45deg, #f7e9b0 0px, #f7e9b0 4px, #f3d88a 4px, #f3d88a 8px);
+    background-size: 16px 16px;
     background-attachment: fixed;
     color: #2b2b2b;
     margin: 0;
