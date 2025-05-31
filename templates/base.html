@@ -84,29 +84,30 @@
                     <a class="nav-link nav-cards" href="{% url 'cards:cards-home' %}">Cards</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'cards:add-card' %}" class="btn btn-primary ms-2">Add New Card</a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'cards:add-card' %}" class="btn btn-primary ms-2">Add New Card</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link nav-games" href="{% url 'games:games-home' %}">Games</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'games:add-game' %}" class="btn btn-success ms-2">Add New Game</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-blog" href="{% url 'blog:blog-home' %}">Blog</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a href="{% url 'blog:create-blogpost' %}" class="btn btn-warning ms-2">Add Blog</a>
-                </li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link nav-favorites" href="{% url 'favorites:favorites-home' %}">★ Favoriler</a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{% url 'games:add-game' %}" class="btn btn-success ms-2">Add New Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-blog" href="{% url 'blog:blog-home' %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'blog:create-blogpost' %}" class="btn btn-warning ms-2">Add Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-favorites" href="{% url 'favorites:favorites-home' %}">★ Favoriler</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-blog" href="{% url 'blog:blog-home' %}">Blog</a>
+                    </li>
                 {% endif %}
             </ul>
 
