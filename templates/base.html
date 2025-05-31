@@ -103,6 +103,10 @@
                     <a href="{% url 'blog:create-blogpost' %}" class="btn btn-warning ms-2">Add Blog</a>
                 </li>
                 {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link nav-favorites" href="{% url 'favorites:favorites-home' %}">★ Favoriler</a>
+                </li>
                 {% endif %}
             </ul>
 

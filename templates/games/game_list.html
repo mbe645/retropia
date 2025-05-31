@@ -8,7 +8,8 @@
         <div class="row mt-4">
             {% for game in games %}
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm position-relative">
+                        <span class="favorite-star">☆</span>
                         <div class="card-body">
                             <h5 class="card-title">{{ game.name }}</h5>
                             <p class="card-text">{{ game.description|truncatewords:15 }}</p>

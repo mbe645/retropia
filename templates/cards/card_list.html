@@ -8,7 +8,8 @@
         <div class="row mt-4">
             {% for card in cards %}
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm position-relative">
+                        <span class="favorite-star">☆</span>
                         {% if card.image %}
                             <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.name }}">
                         {% endif %}

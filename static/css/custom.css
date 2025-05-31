@@ -140,3 +140,23 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
 
 .nav-login    { color: #fb923c !important; } /* Turuncu */
 .nav-register { color: #f43f5e !important; } /* Kırmızı */
+
+.favorite-star {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 22px;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.2s;
+    user-select: none;
+    z-index: 2;
+}
+.favorite-star.favorited {
+    color: #facc15;
+    text-shadow: 1px 1px 2px #000;
+}
+.nav-favorites {
+    color: #a78bfa !important;
+    font-weight: bold;
+}

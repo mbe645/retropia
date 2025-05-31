@@ -5,7 +5,8 @@
     <div class="row mt-4">
         {% for post in posts %}
             <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm position-relative">
+                    <span class="favorite-star">☆</span>
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text">{{ post.content|truncatewords:20 }}</p>
