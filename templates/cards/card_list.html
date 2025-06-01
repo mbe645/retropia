@@ -9,7 +9,9 @@
             {% for card in cards %}
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm position-relative">
-                        <span class="favorite-star">☆</span>
+                        {% if user.is_authenticated %}
+                            <span class="favorite-star {% if card.id in favorited_ids %}favorited{% endif %}" data-card-id="{{ card.id }}">{% if card.id in favorited_ids %}★{% else %}☆{% endif %}</span>
+                        {% endif %}
                         {% if card.image %}
                             <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.name }}">
                         {% endif %}
@@ -26,4 +28,27 @@
         <p>No cards available at the moment.</p>
     {% endif %}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.favorite-star').forEach(function(star) {
+        star.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var cardId = this.getAttribute('data-card-id');
+            var starElem = this;
+            fetch('/favorites/toggle/' + cardId + '/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    starElem.classList.toggle('favorited');
+                    starElem.textContent = starElem.classList.contains('favorited') ? '★' : '☆';
+                }
+            });
+        });
+    });
+});
+</script>
 {% endblock %}

@@ -6,7 +6,9 @@
         {% for post in posts %}
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm position-relative">
-                    <span class="favorite-star">☆</span>
+                    {% if user.is_authenticated %}
+                        <span class="favorite-star {% if post.id in favorited_blog_ids %}favorited{% endif %}" data-blog-id="{{ post.id }}">{% if post.id in favorited_blog_ids %}★{% else %}☆{% endif %}</span>
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <p class="card-text">{{ post.content|truncatewords:20 }}</p>
@@ -20,4 +22,27 @@
         {% endfor %}
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.favorite-star[data-blog-id]').forEach(function(star) {
+        star.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var blogId = this.getAttribute('data-blog-id');
+            var starElem = this;
+            fetch('/favorites/toggle/blog/' + blogId + '/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    starElem.classList.toggle('favorited');
+                    starElem.textContent = starElem.classList.contains('favorited') ? '★' : '☆';
+                }
+            });
+        });
+    });
+});
+</script>
 {% endblock %}

@@ -18,6 +18,10 @@
         {{ comment_form.as_p }}
         <button class="btn btn-primary">Add Comment</button>
       </form>
+      <form method="post" action="/favorites/toggle/{{ card.id }}/" style="margin-top: 10px;">
+        {% csrf_token %}
+        <button class="btn btn-warning">{% if is_favorited %}Remove Favorite{% else %}Add Favorite{% endif %}</button>
+      </form>
     {% else %}
       <p><a href="{% url 'accounts:login' %}">Log in</a> to comment.</p>
     {% endif %}

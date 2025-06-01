@@ -145,16 +145,17 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
     position: absolute;
     top: 8px;
     right: 12px;
-    font-size: 22px;
+    font-size: 32px;
     color: #bbb;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.1s;
     user-select: none;
     z-index: 2;
 }
 .favorite-star.favorited {
     color: #facc15;
     text-shadow: 1px 1px 2px #000;
+    transform: scale(1.15);
 }
 .nav-favorites {
     color: #a78bfa !important;

@@ -3,17 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from .models import BlogPost
 from .forms import BlogPostForm, BlogCommentForm
+from favorites.models import Favorite
 
 def index(request):
     return render(request, 'blog/index.html')
 
 def blog_list(request):
     posts = BlogPost.objects.all().order_by('-created_at')
-    return render(request, 'blog/blog_list.html', {'posts': posts})
+    favorited_blog_ids = set()
+    if request.user.is_authenticated:
+        favorited_blog_ids = set(Favorite.objects.filter(user=request.user, blog__isnull=False).values_list('blog_id', flat=True))
+    return render(request, 'blog/blog_list.html', {'posts': posts, 'favorited_blog_ids': favorited_blog_ids})
 
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
-    comments = post.comments.all().order_by('-created_at')  # DÜZELTİLDİ: blog_comments → comments
+    is_favorited = False
+    if request.user.is_authenticated:
+        is_favorited = Favorite.objects.filter(user=request.user, blog=post).exists()
+    comments = post.comments.all().order_by('-created_at')
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
@@ -31,6 +38,7 @@ def blog_detail(request, pk):
         'post': post,
         'form': form,
         'comments': comments,
+        'is_favorited': is_favorited,
     })
 
 @login_required
