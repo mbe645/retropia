@@ -20,7 +20,7 @@ def toggle_favorite(request, card_id):
 
 @login_required
 def favorite_list(request):
-    favorites = Favorite.objects.filter(user=request.user)
+    favorites = Favorite.objects.filter(user=request.user, card__isnull=False)
     return render(request, 'favorites/favorite_list.html', {'favorites': favorites})
 
 @login_required
