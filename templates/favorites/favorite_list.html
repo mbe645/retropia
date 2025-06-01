@@ -9,7 +9,11 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ favorite.card.name }}</h5>
                         <p class="card-text">{{ favorite.card.description|truncatewords:15 }}</p>
-                        <a href="{% url 'cards:card-detail' favorite.card.id %}" class="btn btn-primary">View Card</a>
+                        {% if favorite.card %}
+                            <a href="{% url 'cards:card-detail' favorite.card.id %}" class="btn btn-primary">View Card</a>
+                        {% else %}
+                            <span class="text-danger">Card not found</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
