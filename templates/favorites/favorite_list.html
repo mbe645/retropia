@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
-    <h2>Your Favorite Cards</h2>
+    <h2>Your Favorites</h2>
     <div class="row mt-4">
         {% for favorite in favorites %}
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">{{ favorite.card.name }}</h5>
-                        <p class="card-text">{{ favorite.card.description|truncatewords:15 }}</p>
                         {% if favorite.card %}
+                            <h5 class="card-title">🃏 {{ favorite.card.name }}</h5>
+                            <p class="card-text">{{ favorite.card.description|truncatewords:15 }}</p>
                             <a href="{% url 'cards:card-detail' favorite.card.id %}" class="btn btn-primary">View Card</a>
+                        {% elif favorite.game %}
+                            <h5 class="card-title">🎮 {{ favorite.game.name }}</h5>
+                            <p class="card-text">{{ favorite.game.description|truncatewords:15 }}</p>
+                            <a href="{% url 'games:game-detail' favorite.game.id %}" class="btn btn-success">View Game</a>
+                        {% elif favorite.blog %}
+                            <h5 class="card-title">📝 {{ favorite.blog.title }}</h5>
+                            <p class="card-text">{{ favorite.blog.content|truncatewords:15 }}</p>
+                            <a href="{% url 'blog:blog-detail' favorite.blog.id %}" class="btn btn-warning">View Blog</a>
                         {% else %}
-                            <span class="text-danger">Card not found</span>
+                            <span class="text-danger">Favorite not found</span>
                         {% endif %}
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p>You have no favorite cards yet.</p>
+            <p>You have no favorites yet.</p>
         {% endfor %}
     </div>
 </div>
