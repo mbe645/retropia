@@ -5,7 +5,11 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body">
-                    <h2 class="card-title">{{ game.name }}</h2>
+                    <h2 class="card-title d-flex align-items-center">{{ game.name }}
+                        {% if user.is_authenticated %}
+                        <span class="favorite-star ms-3 {% if is_favorited %}favorited{% endif %}" id="favoriteStar" data-game-id="{{ game.id }}">{% if is_favorited %}★{% else %}☆{% endif %}</span>
+                        {% endif %}
+                    </h2>
                     <p class="card-text">{{ game.description }}</p>
                     <p><strong>Platform:</strong> {{ game.platform }}</p>
                     <p><strong>Release Year:</strong> {{ game.release_year }}</p>
@@ -26,14 +30,36 @@
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Submit Comment</button>
               </form>
-              <form method="post" action="/favorites/toggle/game/{{ game.id }}/" style="margin-top: 10px;">
-                {% csrf_token %}
-                <button class="btn btn-warning">{% if is_favorited %}Remove Favorite{% else %}Add Favorite{% endif %}</button>
-              </form>
             {% else %}
               <p><a href="{% url 'accounts:login' %}">Log in</a> to comment.</p>
             {% endif %}
         </div>
     </div>
 </div>
+{% if user.is_authenticated %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var star = document.getElementById('favoriteStar');
+    if (star) {
+        star.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var gameId = this.getAttribute('data-game-id');
+            var starElem = this;
+            fetch('/favorites/toggle/game/' + gameId + '/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    starElem.classList.toggle('favorited');
+                    starElem.textContent = starElem.classList.contains('favorited') ? '★' : '☆';
+                }
+            });
+        });
+    }
+});
+</script>
+{% endif %}
 {% endblock %} 
