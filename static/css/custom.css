@@ -161,3 +161,7 @@ body, .nav-link, .btn, .logo, input, textarea, select, label, p, li, a, th, td, 
     color: #a78bfa !important;
     font-weight: bold;
 }
+
+.dark-theme label, .dark-theme .form-label, .dark-theme input, .dark-theme input::placeholder, .dark-theme textarea, .dark-theme select {
+    color: #fff !important;
+}

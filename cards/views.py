@@ -12,7 +12,10 @@ from django.shortcuts import redirect
 @login_required
 def index(request):
     cards = Card.objects.all()
-    return render(request, 'cards/card_list.html', {'cards': cards})
+    favorited_ids = set()
+    if request.user.is_authenticated:
+        favorited_ids = set(Favorite.objects.filter(user=request.user).values_list('card_id', flat=True))
+    return render(request, 'cards/card_list.html', {'cards': cards, 'favorited_ids': favorited_ids})
 
 @login_required
 def card_detail(request, pk):

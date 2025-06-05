@@ -12,6 +12,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.get_or_create(user=user)  # Profil otomatik oluşturulsun
             login(request, user)  # Automatically login after registration
             return redirect('accounts:profile_view', username=user.username)
     else:
